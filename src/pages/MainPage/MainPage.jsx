@@ -1,5 +1,15 @@
+import Genrebuttons from "../../components/GenreButtons/Genrebuttons";
+import Movies from "../../components/Movies/Movies";
+
 export default function MainPage() {
     return (
-        <div>main page</div>
+        <>
+            <section>
+                <Genrebuttons />
+            </section>
+            <section>
+                <Movies />
+            </section>
+        </>
     )
 }
