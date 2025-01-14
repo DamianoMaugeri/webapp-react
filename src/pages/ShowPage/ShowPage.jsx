@@ -4,10 +4,12 @@ import axios from "axios"
 import { BASE_URI } from "../../config";
 import MovieInfo from "../../components/MovieInfo/MovieInfo";
 import StarVote from "../../components/StarVote/Starvote";
+import Reviews from "../../components/Reviews/Reviews";
+import ReviewForm from "../../components/Reviewsform/ReviewForm";
 
 export default function ShowPage() {
 
-    const [movie, setMovie] = useState({})
+    const [movie, setMovie] = useState(null)
 
     const { id } = useParams()
 
@@ -26,12 +28,29 @@ export default function ShowPage() {
     }, [id]);
 
 
+
     return (
         <>
             {movie ?
                 <div>
-                    <MovieInfo content={movie} />
-                    <StarVote vote={movie.avg_vote} />
+                    <section>
+                        <MovieInfo content={movie} />
+                    </section>
+
+                    <section>
+                        <StarVote vote={movie.avg_vote} />
+                    </section>
+
+                    <section>
+                        {movie.reviews && movie.reviews.length ?
+                            <Reviews content={movie.reviews} /> :
+                            <div>Nessuna recensione</div>
+                        }
+                    </section>
+                    <section>
+                        <ReviewForm id={id} onSuccess={() => fetchById(id)} />
+
+                    </section>
 
                 </div> :
                 <div>nessun film</div>

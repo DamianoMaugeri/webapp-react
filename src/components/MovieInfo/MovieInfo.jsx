@@ -1,7 +1,6 @@
 export default function MovieInfo({ content }) {
 
     const { title, director, genre, release_year, abstract, image } = content
-    console.log(image)
 
     return (
         <div>
